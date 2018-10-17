@@ -12,25 +12,14 @@ const NoMatchExample = () => (
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/aa">Will Match22</Link>
         </li>
         <li>
-          <Link to="/old-match">Old Match, to be redirected</Link>
-        </li>
-        <li>
-          <Link to="/will-match">Will Match</Link>
-        </li>
-        <li>
-          <Link to="/will-not-match">Will Not Match</Link>
-        </li>
-        <li>
-          <Link to="/also/will/not/match">Also Will Not Match</Link>
+          <Link to="/aa/will-match">Will Match</Link>
         </li>
       </ul>
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Redirect from="/old-match" to="/will-match" />
-        <Route path="/will-match" component={WillMatch} />
+        <Route path="/aa/will-match" component={WillMatch} />
         <Route component={NoMatch} />
       </Switch>
     </div>

@@ -12,7 +12,7 @@ const MyLoadingComponent = function ({ error, pastDelay }) {
 
 export default [
     {
-        path: "",
+        path: "/",
         component: Loadable({
             loader: () => import("./home"),
             loading: MyLoadingComponent,
