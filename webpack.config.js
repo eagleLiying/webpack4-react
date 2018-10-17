@@ -1,5 +1,4 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     module: {
@@ -13,6 +12,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: "html-loader",
@@ -22,19 +22,27 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader"]
+                exclude: /node_modules/,
+                use: [
+                    { loader: "style-loader" }, 
+                    { 
+                        // https://github.com/webpack-contrib/css-loader
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]-[local]-[hash:base64:5]'
+                        }  
+                    }
+                ]
             }
         ]
     },
     plugins: [
         new HtmlWebPackPlugin({
+            favicon:'./src/images/favicon.ico', //favicon路径
             template: "./src/index.html",
             filename: "./index.html"
         }),
-        new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css"
-        })
     ],
     devServer: {
         port: 5000
