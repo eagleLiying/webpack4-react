@@ -1,3 +1,4 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -41,11 +42,19 @@ module.exports = {
         new HtmlWebPackPlugin({
             favicon:'./src/images/favicon.ico', //favicon路径
             template: "./src/index.html",
-            filename: "./index.html"
+            filename: "./index.html",
         }),
     ],
+    devtool: 'cheap-module-source-map',
     devServer: {
         port: 5000,
-        historyApiFallback: true,
+        contentBase: path.resolve(__dirname, 'public'),
+        clientLogLevel: 'none',
+        quiet: true,
+        compress: true,
+        // hot: true,
+        historyApiFallback: {
+            disableDotRule: true
+        }
     }
 };
