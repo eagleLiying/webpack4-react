@@ -56,5 +56,11 @@ module.exports = {
         historyApiFallback: {
             disableDotRule: true
         }
-    }
+    },
+    resolve: {
+        extensions: ['.js', '.jsx', '.css'],
+        alias: {
+          components: path.resolve(__dirname, 'src/components/'),
+        }
+      }
 };

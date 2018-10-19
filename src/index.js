@@ -2,15 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, Link, Switch } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
-
+import List from 'components/List';
+import routes from './routes';
 
 const history = createHistory();
+
 
 const Sandwiches = () => <h2>Sandwiches</h2>;
 
 const Tacos = ({ itemRoutes }) => (
   <div>
     <h2>Tacos</h2>
+    <List />
     <ul>
       <li>
         <Link to="/tacos/bus">Bus</Link>
@@ -19,7 +22,6 @@ const Tacos = ({ itemRoutes }) => (
         <Link to="/tacos/cart">Cart</Link>
       </li>
     </ul>
-
     {itemRoutes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
   </div>
 );
@@ -29,26 +31,26 @@ const Cart = () => <h3>Cart</h3>;
 
 ////////////////////////////////////////////////////////////
 // then our route config
-const routes = [
-  {
-    path: "/sandwiches",
-    component: Sandwiches
-  },
-  {
-    path: "/tacos",
-    component: Tacos,
-    routes: [
-      {
-        path: "/tacos/bus",
-        component: Bus
-      },
-      {
-        path: "/tacos/cart",
-        component: Cart
-      }
-    ]
-  }
-];
+// const routes = [
+//   {
+//     path: "/sandwiches",
+//     component: Sandwiches
+//   },
+//   {
+//     path: "/tacos",
+//     component: Tacos,
+//     routes: [
+//       {
+//         path: "/tacos/bus",
+//         component: Bus
+//       },
+//       {
+//         path: "/tacos/cart",
+//         component: Cart
+//       }
+//     ]
+//   }
+// ];
 
 // wrap <Route> and use this everywhere instead, then when
 // sub routes are added to any route it'll work
@@ -65,15 +67,15 @@ const RouteWithSubRoutes = route => (
 const RouteConfigExample = () => (
   <Router history={history}>
     <div>
-      <ul>
-        <li>
-          <Link to="/tacos">Tacos</Link>
+      <ul style={{ display: "flex", listStyle: "none", backgroundColor: "#eee" }}>
+        <li style={{ margin: "0 10px" }}>
+          <Link to="/home">home</Link>
         </li>
-        <li>
-          <Link to="/sandwiches">Sandwiches</Link>
+        <li style={{ margin: "0 10px" }}>
+          <Link to="/add">Add</Link>
         </li>
-        <li>
-          <Link to="/bbbb">bbbb</Link>
+        <li style={{ margin: "0 10px" }}>
+          <Link to="/404">404</Link>
         </li>
       </ul>
       <Switch>
