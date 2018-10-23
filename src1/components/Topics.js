@@ -3,6 +3,7 @@ import {Route, Link} from 'mirrorx'
 
 import Topic from '../components/Topic'
 import AddTopic from '../components/AddTopic'
+import Test from '../components/Test'
 
 const Topics = ({topics}) => (
   <div>
@@ -11,15 +12,14 @@ const Topics = ({topics}) => (
       {
         topics.map((topic, idx) => (
           <li key={idx}>
-            <Link to={`/topics/${idx}`}>{topic}</Link>
+            <Link to={`/topics/test`}>{topic}</Link>
           </li>
         ))
       }
     </ul>
-    <Route path={`/topics/:topicId`} render={({match}) => (
-      <Topic topic={topics.find((item, idx) => idx == match.params.topicId)}/>
-    )}/>
+    <Route path={`/topics/test`}  component={Topic} />
     <Route exact path="/topics" component={AddTopic}/>
+    <Route exact path="/topics/test/test2" component={Test}/>
   </div>
 )
 

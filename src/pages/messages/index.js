@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 class List extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -23,25 +23,27 @@ class List extends React.Component {
             type: "GET",
             url: "http://localhost:8888/api/getMessages",
             dataType: "json",
-            success: function(data){
-                console.log(data);
+            success: function (data) {
                 sel.setState({
                     list: data,
                 })
             }
         });
-        
+
     }
 
-    render(){
+    render() {
         return (
-            <ul>
-                {this.state.list.map((item, index) => (
-                    <li key={item._id}>
-                        <Link to={`/home/${item._id}`}>{item.message}</Link>
-                    </li>
-                ))}
-            </ul>
+            <div>
+                消息列表：
+                <ul>
+                    {this.state.list.map((item, index) => (
+                        <li key={item._id}>
+                            <Link to={`/message/${item._id}`}>{item.message}</Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         )
     }
 }

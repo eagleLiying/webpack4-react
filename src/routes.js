@@ -3,7 +3,6 @@ import Loadable from "react-loadable";
 
 const MyLoadingComponent = function ({ error, pastDelay }) {
     if (error) {
-        console.log(error);
         return <div>Error!</div>;
     } else if (pastDelay) {
         return <div>Loading...</div>;
@@ -16,14 +15,21 @@ const routes = [
     {
         path: "/add",
         component: Loadable({
-            loader: () => import("./pages/add"),
+            loader: () => import(/* webpackChunkName: "add" */ "./pages/add"),
             loading: MyLoadingComponent
         }),
     },
     {
-        path: "/home",
+        path: "/message/:id",
         component: Loadable({
-            loader: () => import("./pages/home"),
+            loader: () => import(/* webpackChunkName: "message" */ "./pages/message"),
+            loading: MyLoadingComponent
+        }),
+    },
+    {
+        path: "/messages",
+        component: Loadable({
+            loader: () => import(/* webpackChunkName: "messages" */ "./pages/messages"),
             loading: MyLoadingComponent
         })
     }

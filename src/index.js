@@ -1,14 +1,7 @@
-import React from 'react'
+import React from "react";
+import ReactDOM from "react-dom";
+import App from './App';
 
-import mirror, {render, Router} from 'mirrorx'
-import App from './App'
-
-// mirror.defaults({
-//   // historyMode: 'hash'
-// })
-
-render(
-  <Router>
-    <App/>
-  </Router>
-, document.getElementById('root'))
+ReactDOM.render(
+  <App />
+  , document.getElementById('root'))

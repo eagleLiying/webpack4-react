@@ -1,8 +1,10 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const webpack = require('webpack');
 
 module.exports = {
+    output: {
+        publicPath: '/',
+    },
     module: {
         rules: [
             {
@@ -26,14 +28,14 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    { loader: "style-loader" }, 
-                    { 
+                    { loader: "style-loader" },
+                    {
                         // https://github.com/webpack-contrib/css-loader
                         loader: "css-loader",
                         options: {
                             modules: true,
                             localIdentName: '[name]-[local]-[hash:base64:5]'
-                        }  
+                        }
                     }
                 ]
             }
@@ -41,39 +43,20 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            favicon:'./src/images/favicon.ico', //favicon路径
+            favicon: './src/images/favicon.ico', //favicon路径
             template: "./src/index.html",
             filename: "./index.html",
         }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
     ],
     devtool: 'cheap-module-source-map',
     devServer: {
-        // port: 5000,
-        // contentBase: path.resolve(__dirname, 'public'),
-        // clientLogLevel: 'none',
-        // quiet: true,
-        // compress: true,
-        // // hot: true,
-        // historyApiFallback: {
-        //     disableDotRule: true
-        // }
-
-        contentBase: path.resolve(__dirname, 'public'),
-        clientLogLevel: 'none',
-        quiet: true,
         port: 5000,
-        compress: true,
-        hot: true,
-        historyApiFallback: {
-            disableDotRule: true
-        }
+        historyApiFallback: true
     },
     resolve: {
         extensions: ['.js', '.jsx', '.css'],
         alias: {
-          components: path.resolve(__dirname, 'src/components/'),
+            components: path.resolve(__dirname, 'src/components/'),
         }
-      }
+    }
 };
