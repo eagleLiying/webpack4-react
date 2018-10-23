@@ -3,6 +3,7 @@ import Loadable from "react-loadable";
 
 const MyLoadingComponent = function ({ error, pastDelay }) {
     if (error) {
+        console.log(error);
         return <div>Error!</div>;
     } else if (pastDelay) {
         return <div>Loading...</div>;

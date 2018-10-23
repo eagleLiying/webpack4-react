@@ -27,7 +27,7 @@ class Add extends React.Component {
     handleClick() {
         const { value } = this.state;
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "http://localhost:8888/api/createMessage",
             dataType: "json",
             data: {

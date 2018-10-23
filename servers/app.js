@@ -4,22 +4,25 @@ var path = require('path');
 var ejs = require('ejs');
 var mongoose = require('mongoose')
 var routes = require('./action/index')
+// https://github.com/expressjs/cors
+var cors = require('cors')
+var bodyParser = require('body-parser');
 
 mongoose.connect('mongodb://localhost:27017/messages', () => {
     console.log("数据库 Messages 连接成功🎉 🎉 🎉 🎉 🎉");
 })
 
-// https://github.com/expressjs/cors
-var cors = require('cors')
 
 var app = express();
 
 // 跨域
 app.use(cors())
 
+// body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 // api
 app.use("/api", routes);
-
 
 // 新增接口路由
 // app.get('/api/:module', function (req, res, next) {

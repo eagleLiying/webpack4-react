@@ -1,3 +1,12 @@
 const createMessage = require('./createMessage');
+const getMessages = require('./getMessages');
 
-module.exports = createMessage;
+const api = [
+    // post
+    createMessage,
+
+    // get
+    getMessages,
+]
+
+module.exports = api;

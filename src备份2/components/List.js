@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import $ from 'jquery';
 
 class List extends React.Component {
@@ -19,9 +21,10 @@ class List extends React.Component {
         const sel = this;
         $.ajax({
             type: "GET",
-            url: "http://localhost:8888/api/getMessage",
+            url: "http://localhost:8888/api/getMessages",
             dataType: "json",
             success: function(data){
+                console.log(data);
                 sel.setState({
                     list: data,
                 })
@@ -34,8 +37,8 @@ class List extends React.Component {
         return (
             <ul>
                 {this.state.list.map((item, index) => (
-                    <li key={index}>
-                        {item.Message}
+                    <li key={item._id}>
+                        <Link to={`/home/${item._id}`}>{item.message}</Link>
                     </li>
                 ))}
             </ul>

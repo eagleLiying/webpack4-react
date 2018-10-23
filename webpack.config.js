@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
 
 module.exports = {
     module: {
@@ -44,15 +45,27 @@ module.exports = {
             template: "./src/index.html",
             filename: "./index.html",
         }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin()
     ],
     devtool: 'cheap-module-source-map',
     devServer: {
-        port: 5000,
+        // port: 5000,
+        // contentBase: path.resolve(__dirname, 'public'),
+        // clientLogLevel: 'none',
+        // quiet: true,
+        // compress: true,
+        // // hot: true,
+        // historyApiFallback: {
+        //     disableDotRule: true
+        // }
+
         contentBase: path.resolve(__dirname, 'public'),
         clientLogLevel: 'none',
         quiet: true,
+        port: 5000,
         compress: true,
-        // hot: true,
+        hot: true,
         historyApiFallback: {
             disableDotRule: true
         }
