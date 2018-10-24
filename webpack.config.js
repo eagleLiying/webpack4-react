@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     output: {
+        path: path.resolve(__dirname, '/dist/js'),
         publicPath: '/',
     },
     module: {
@@ -41,11 +42,16 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            name: "vendor",
+        }
+    },
     plugins: [
         new HtmlWebPackPlugin({
             favicon: './src/images/favicon.ico', //favicon路径
             template: "./src/index.html",
-            filename: "./index.html",
+            filename: path.resolve(__dirname, '/dist/index.html'),
         }),
     ],
     devtool: 'cheap-module-source-map',
